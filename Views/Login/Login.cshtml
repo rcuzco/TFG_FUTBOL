@@ -1,0 +1,91 @@
+﻿@model TFG_FUTBOL.DataModels.USUARIOS
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Bienvenido. Valide sus credenciales antes de entrar al siste,a</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/signin.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+<body class="text-center">
+    <form id="FrmLogin" class="form-signin">
+        <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Introduzca sus credenciales</h1>
+
+        <label asp-for="NombreUsuario" class="sr-only">Nombre de usuario</label>
+        <input asp-for="NombreUsuario" class="form-control" placeholder="Nombre de usuario" required autofocus>
+        <span asp-validation-for="NombreUsuario" class="text-danger"></span>
+
+        <label asp-for="Contrasenha" class="sr-only">Contraseña</label>
+        <input type="password" asp-for="Contrasenha" class="form-control" placeholder="Contraseña" required>
+
+        <button id="BtnLogin" class="btn btn-lg btn-outline-primary btn-block" type="button">Iniciar sesión</button>
+        <p class="mt-5 mb-3 text-muted">&copy; @DateTime.Now.Year</p>
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    </form>
+    <script>
+        $("#BtnLogin").click(function (event)
+        {
+            event.preventDefault();
+
+            console.log("validar!!");
+            
+            $("#BtnLogin").html("Validando credenciales  <i class='fas fa - spinner fa - spin'></i>...")
+            $("#BtnLogin").prop('disabled', true);
+
+            const nombreUsuario = $("#NombreUsuario").val();
+            const contrasenha = $("#Contrasenha").val();
+
+            const datosUsuario = { NombreUSuario : nombreUsuario, Contrasenha: contrasenha };
+            const dataToSend1 = $("#FrmLogin").serialize();
+            const dataToSend2 = JSON.stringify(datosUsuario);
+
+            
+            $.ajax({
+                type: 'POST',
+                url: '/USUARIOS/Authenticate',                
+                contentType: "application/json; charset=utf-8",
+                data: dataToSend2,                
+                async: false,
+                beforeSend: function (xhr)
+                {
+                    xhr.setRequestHeader('Authorization', 'Basic ' + window.btoa(nombreUsuario + ':' + contrasenha));
+                },
+                success: function (data)
+                {
+                    alert("Validación realizada con éxito!!!", data);
+                    window.location.replace(data);
+                },
+                error: function (errorInfo)
+                {
+                    console.log("errorinfo",errorInfo);
+                }
+            }).done(function (msg)
+            {
+                console.log("done!", msg);
+            }).fail(function (jqXHR, textStatus)
+            {
+                console.log("fail!", textStatus);
+                $("#BtnLogin").html("Iniciar sesión")
+                $("#BtnLogin").prop('disabled', false);
+            });
+        });
+    </script>
+</body>
+</html>

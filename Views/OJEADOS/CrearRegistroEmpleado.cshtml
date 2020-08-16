@@ -1,0 +1,167 @@
+﻿@model TFG_FUTBOL.Models.EmpleadosOjeadosViewModel
+
+@{
+    ViewData["Title"] = "Crear registro empleado";
+}
+
+<h1>Crear nuevo empleado</h1>
+
+<div>
+    <div class="row mb-2">
+        <div class="col-md-12">
+            <div class="card border-primary mb-3">
+                <div class="card-header">INFO JUGADOR</div>
+                <div class="card-body text-primary">
+                    <form asp-action="CrearRegistroEmpleado" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group row">
+                            <label asp-for="DNI" class="col-sm-3 col-form-label"></label>
+                            <div class="col-sm-3">
+                                <input asp-for="DNI" class="form-control" placeholder="Introduzca el DNI del jugador" />
+                            </div>
+                            <span asp-validation-for="DNI" class="text-danger"></span>
+                        </div>                        
+                        <h5 class="card-title form-group row">
+                            <label class="col-sm-3 col-form-label">Nombres completos</label>
+                            <div class="col-sm-3">
+                                <input asp-for="Nombres" class="form-control" placeholder="Nombres" />
+                                <span asp-validation-for="Nombres" class="text-danger"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <input asp-for="PrimerApellido" class="form-control" placeholder="Primer Apellido" />
+                                <span asp-validation-for="PrimerApellido" class="text-danger"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <input asp-for="SegundoApellido" class="form-control" placeholder="Segundo Apellido" />
+                                <span asp-validation-for="SegundoApellido" class="text-danger"></span>
+                            </div>
+                        </h5>
+                        <div class="card border-light flex-md-row mb-4 shadow-sm h-md-250">
+                            <img id="ImgJugador" class="card-img-right flex-auto d-none d-lg-block" data-src="~/img/just-a-user.webp" src="~/img/just-a-user.webp" alt="@Model.NombresCompletos" title="Click para subir nueva imagen" style="cursor:pointer;width:128px;">
+                            <div class="card-body d-flex flex-column align-items-start">
+                                <strong class="d-inline-block mb-2 text-primary">Formación: @Model.Formacion</strong>
+                                <h3 class="mb-0">
+                                    <a class="text-dark" href="#">Experiencia: @Model.Experiencia</a>
+                                </h3>
+                                <div class="mb-1 text-muted">Nacido en el año @Model.AnhoNacimiento</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-file col-sm-12">
+                                <input asp-for="ArchivoFoto" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile">Subir nueva imagen para jugador</label>
+                            </div>
+                            <span asp-validation-for="ArchivoFoto" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group row">
+                            <label asp-for="Telefono1" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="Telefono1" class="form-control" />
+                            </div>
+                            <span asp-validation-for="Telefono1" class="text-danger"></span>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Telefono2" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="Telefono2" class="form-control" />
+                            </div>
+                            <span asp-validation-for="Telefono2" class="text-danger"></span>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Correo" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="Correo" class="form-control" />
+                            </div>
+                            <span asp-validation-for="Correo" class="text-danger"></span>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="AnhoNacimiento" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="AnhoNacimiento" class="form-control" />
+                            </div>
+                            <span asp-validation-for="AnhoNacimiento" class="text-danger"></span>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Valoracion" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="Valoracion" class="form-control" />
+                            </div>
+                            <span asp-validation-for="Valoracion" class="text-danger"></span>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="IdClub" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="IdClub" class="form-control" />
+                            </div>
+                            <span asp-validation-for="IdClub" class="text-danger"></span>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Club" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="Club" class="form-control" />
+                            </div>
+                            <span asp-validation-for="Club" class="text-danger"></span>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="PaisNacimiento" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="PaisNacimiento" class="form-control" />
+                            </div>
+                            <span asp-validation-for="PaisNacimiento" class="text-danger"></span>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Pasaporte" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="Pasaporte" class="form-control" />
+                            </div>
+                            <span asp-validation-for="Pasaporte" class="text-danger"></span>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Formacion" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="Formacion" class="form-control" />
+                            </div>
+                            <span asp-validation-for="Formacion" class="text-danger"></span>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Experiencia" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="Experiencia" class="form-control" />
+                            </div>
+                            <span asp-validation-for="Experiencia" class="text-danger"></span>
+                        </div>
+                        <div class="form-group row" style="display:none;">
+                            <label asp-for="Foto" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="Foto" class="form-control" />
+                            </div>
+                            <span asp-validation-for="Foto" class="text-danger"></span>
+                        </div>
+                        <div>
+                            <input type="submit" value="Guardar Cambios" class="btn btn-outline-success" />
+                            <a asp-action="BusquedaAvanzada" class="btn btn-outline-secondary">Volver al listado</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
+    
+    <script type="text/javascript">
+        // Add the following code if you want the name of the file appear on select
+        $("#ImgJugador").click(function ()
+        {
+            $("#customFile").click();
+        });
+        $(".custom-file-input").on("change", function ()
+        {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+}
