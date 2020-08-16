@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f73550c74db04217acaaa9a735250292" Name="Diagram1">
+        <EntityTypeShape EntityType="TFG_FUTBOLModel.CLUB" Width="1.5" PointX="0.75" PointY="6.875" />
+        <EntityTypeShape EntityType="TFG_FUTBOLModel.EMPLEADOS" Width="1.5" PointX="5.25" PointY="2.125" />
+        <EntityTypeShape EntityType="TFG_FUTBOLModel.EMPLEADOS_OJEADOS" Width="1.5" PointX="5.25" PointY="11.875" />
+        <EntityTypeShape EntityType="TFG_FUTBOLModel.ENTRENADORES" Width="1.5" PointX="7.5" PointY="4.625" />
+        <EntityTypeShape EntityType="TFG_FUTBOLModel.EQUIPOS" Width="1.5" PointX="3" PointY="3" />
+        <EntityTypeShape EntityType="TFG_FUTBOLModel.JUGADORES" Width="1.5" PointX="7.5" PointY="1.5" />
+        <EntityTypeShape EntityType="TFG_FUTBOLModel.JUGADORES_OJEADOS" Width="1.5" PointX="5.25" PointY="7.5" />
+        <EntityTypeShape EntityType="TFG_FUTBOLModel.OJEADOS" Width="1.5" PointX="3" PointY="8.625" />
+        <EntityTypeShape EntityType="TFG_FUTBOLModel.TEMPORADAS_EMPLEADOS" Width="1.5" PointX="7.5" PointY="11.375" />
+        <EntityTypeShape EntityType="TFG_FUTBOLModel.TEMPORADAS_JUGADORES" Width="1.5" PointX="7.5" PointY="7.375" />
+        <EntityTypeShape EntityType="TFG_FUTBOLModel.USUARIOS" Width="1.5" PointX="9.75" PointY="0.75" />
+        <AssociationConnector Association="TFG_FUTBOLModel.FK_EQUIPOS_CLUB" />
+        <AssociationConnector Association="TFG_FUTBOLModel.FK_OJEADOS_CLUB" />
+        <AssociationConnector Association="TFG_FUTBOLModel.FK_EMPLEADOS_EQUIPOS" />
+        <AssociationConnector Association="TFG_FUTBOLModel.FK_ENTRENADORES_EMPLEADOS" />
+        <AssociationConnector Association="TFG_FUTBOLModel.FK_JUGADORES_EMPLEADOS" />
+        <AssociationConnector Association="TFG_FUTBOLModel.FK_EMPLEADOS_OJEADOS_OJEADOS" />
+        <AssociationConnector Association="TFG_FUTBOLModel.FK_TEMPORADAS_EMPLEADOS_EMPLEADOS_OJEADOS" />
+        <AssociationConnector Association="TFG_FUTBOLModel.FK_JUGADORES_OJEADOS_OJEADOS" />
+        <AssociationConnector Association="TFG_FUTBOLModel.FK_TEMPORADAS_JUGADORES_JUGADORES_OJEADOS" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

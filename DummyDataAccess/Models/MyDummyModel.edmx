@@ -1,0 +1,793 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TFG_FUTBOLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CLUB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="50" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="EMPLEADOS">
+          <Key>
+            <PropertyRef Name="DNI" />
+          </Key>
+          <Property Name="DNI" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Nombres" Type="nvarchar" MaxLength="50" />
+          <Property Name="PrimerApellido" Type="nvarchar" MaxLength="50" />
+          <Property Name="SegundoApellido" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telefono1" Type="nvarchar" MaxLength="20" />
+          <Property Name="Telefono2" Type="nvarchar" MaxLength="20" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="50" />
+          <Property Name="AnhoNacimiento" Type="smallint" />
+          <Property Name="Valoracion" Type="smallint" />
+          <Property Name="Curriculum" Type="nvarchar(max)" />
+          <Property Name="EquipoID" Type="int" />
+        </EntityType>
+        <EntityType Name="EMPLEADOS_OJEADOS">
+          <Key>
+            <PropertyRef Name="DNI" />
+          </Key>
+          <Property Name="DNI" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Formacion" Type="nvarchar" MaxLength="50" />
+          <Property Name="Experiencia" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ENTRENADORES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Formacion" Type="nvarchar" MaxLength="50" />
+          <Property Name="Experiencia" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmpleadoDNI" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="EQUIPOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Categoria" Type="nvarchar" MaxLength="50" />
+          <Property Name="ClubID" Type="int" />
+        </EntityType>
+        <EntityType Name="JUGADORES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Posicion" Type="nvarchar" MaxLength="50" />
+          <Property Name="PiernaDominante" Type="nvarchar" MaxLength="50" />
+          <Property Name="Goles" Type="smallint" />
+          <Property Name="PartidosTitular" Type="smallint" />
+          <Property Name="EmpleadoDNI" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JUGADORES_OJEADOS">
+          <Key>
+            <PropertyRef Name="DNI" />
+          </Key>
+          <Property Name="DNI" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Posicion" Type="nvarchar" MaxLength="50" />
+          <Property Name="PiernaDominante" Type="char" MaxLength="10" />
+          <Property Name="ValorDeMercado" Type="money" />
+          <Property Name="VencimientoContrato" Type="datetime" />
+          <Property Name="Altura" Type="smallint" />
+          <Property Name="Peso" Type="smallint" />
+          <Property Name="EnPrestamo" Type="bit" />
+        </EntityType>
+        <EntityType Name="OJEADOS">
+          <Key>
+            <PropertyRef Name="DNI" />
+          </Key>
+          <Property Name="DNI" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Nombres" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PrimerApellido" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SegundoApellido" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telefono1" Type="nvarchar" MaxLength="15" />
+          <Property Name="Telefono2" Type="nvarchar" MaxLength="15" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AnhoNacimiento" Type="smallint" />
+          <Property Name="Valoracion" Type="smallint" />
+          <Property Name="Foto" Type="nvarchar" MaxLength="500" />
+          <Property Name="IdClub" Type="int" />
+          <Property Name="Club" Type="nvarchar" MaxLength="50" />
+          <Property Name="Pasaporte" Type="nvarchar" MaxLength="20" />
+          <Property Name="PaisNacimiento" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="TEMPORADAS_EMPLEADOS">
+          <Key>
+            <PropertyRef Name="DNI" />
+            <PropertyRef Name="Temporada" />
+          </Key>
+          <Property Name="DNI" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Temporada" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PartidosJugados" Type="smallint" />
+          <Property Name="Victorias" Type="smallint" />
+          <Property Name="Derrotas" Type="smallint" />
+          <Property Name="Empates" Type="smallint" />
+          <Property Name="Puntos" Type="smallint" />
+          <Property Name="Competicion" Type="smallint" />
+          <Property Name="Club" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TEMPORADAS_JUGADORES">
+          <Key>
+            <PropertyRef Name="DNI" />
+            <PropertyRef Name="Temporada" />
+          </Key>
+          <Property Name="DNI" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Temporada" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Club" Type="nvarchar" MaxLength="50" />
+          <Property Name="Competicion" Type="nvarchar" MaxLength="50" />
+          <Property Name="PartidosTitular" Type="smallint" />
+          <Property Name="PartidosSuplente" Type="smallint" />
+          <Property Name="PartidosConvocado" Type="smallint" />
+          <Property Name="MinutosJugados" Type="smallint" />
+          <Property Name="Goles" Type="smallint" />
+          <Property Name="TarjetasAmarillas" Type="smallint" />
+          <Property Name="TarjetasRojas" Type="smallint" />
+        </EntityType>
+        <EntityType Name="USUARIOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombres" Type="nvarchar" MaxLength="50" />
+          <Property Name="PrimerApellido" Type="nvarchar" MaxLength="50" />
+          <Property Name="SegundoApellido" Type="nvarchar" MaxLength="50" />
+          <Property Name="NombreUsuario" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Contrasenha" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_EMPLEADOS_EQUIPOS">
+          <End Role="EQUIPOS" Type="Self.EQUIPOS" Multiplicity="0..1" />
+          <End Role="EMPLEADOS" Type="Self.EMPLEADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EQUIPOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EMPLEADOS">
+              <PropertyRef Name="EquipoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLEADOS_OJEADOS_OJEADOS">
+          <End Role="OJEADOS" Type="Self.OJEADOS" Multiplicity="1" />
+          <End Role="EMPLEADOS_OJEADOS" Type="Self.EMPLEADOS_OJEADOS" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="OJEADOS">
+              <PropertyRef Name="DNI" />
+            </Principal>
+            <Dependent Role="EMPLEADOS_OJEADOS">
+              <PropertyRef Name="DNI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ENTRENADORES_EMPLEADOS">
+          <End Role="EMPLEADOS" Type="Self.EMPLEADOS" Multiplicity="0..1" />
+          <End Role="ENTRENADORES" Type="Self.ENTRENADORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLEADOS">
+              <PropertyRef Name="DNI" />
+            </Principal>
+            <Dependent Role="ENTRENADORES">
+              <PropertyRef Name="EmpleadoDNI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EQUIPOS_CLUB">
+          <End Role="CLUB" Type="Self.CLUB" Multiplicity="0..1" />
+          <End Role="EQUIPOS" Type="Self.EQUIPOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLUB">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EQUIPOS">
+              <PropertyRef Name="ClubID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JUGADORES_EMPLEADOS">
+          <End Role="EMPLEADOS" Type="Self.EMPLEADOS" Multiplicity="1" />
+          <End Role="JUGADORES" Type="Self.JUGADORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLEADOS">
+              <PropertyRef Name="DNI" />
+            </Principal>
+            <Dependent Role="JUGADORES">
+              <PropertyRef Name="EmpleadoDNI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JUGADORES_OJEADOS_OJEADOS">
+          <End Role="OJEADOS" Type="Self.OJEADOS" Multiplicity="1" />
+          <End Role="JUGADORES_OJEADOS" Type="Self.JUGADORES_OJEADOS" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="OJEADOS">
+              <PropertyRef Name="DNI" />
+            </Principal>
+            <Dependent Role="JUGADORES_OJEADOS">
+              <PropertyRef Name="DNI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OJEADOS_CLUB">
+          <End Role="CLUB" Type="Self.CLUB" Multiplicity="0..1" />
+          <End Role="OJEADOS" Type="Self.OJEADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLUB">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OJEADOS">
+              <PropertyRef Name="IdClub" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TEMPORADAS_EMPLEADOS_EMPLEADOS_OJEADOS">
+          <End Role="EMPLEADOS_OJEADOS" Type="Self.EMPLEADOS_OJEADOS" Multiplicity="1" />
+          <End Role="TEMPORADAS_EMPLEADOS" Type="Self.TEMPORADAS_EMPLEADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLEADOS_OJEADOS">
+              <PropertyRef Name="DNI" />
+            </Principal>
+            <Dependent Role="TEMPORADAS_EMPLEADOS">
+              <PropertyRef Name="DNI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TEMPORADAS_JUGADORES_JUGADORES_OJEADOS">
+          <End Role="JUGADORES_OJEADOS" Type="Self.JUGADORES_OJEADOS" Multiplicity="1" />
+          <End Role="TEMPORADAS_JUGADORES" Type="Self.TEMPORADAS_JUGADORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JUGADORES_OJEADOS">
+              <PropertyRef Name="DNI" />
+            </Principal>
+            <Dependent Role="TEMPORADAS_JUGADORES">
+              <PropertyRef Name="DNI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TFG_FUTBOLModelStoreContainer">
+          <EntitySet Name="CLUB" EntityType="Self.CLUB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMPLEADOS" EntityType="Self.EMPLEADOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMPLEADOS_OJEADOS" EntityType="Self.EMPLEADOS_OJEADOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ENTRENADORES" EntityType="Self.ENTRENADORES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EQUIPOS" EntityType="Self.EQUIPOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JUGADORES" EntityType="Self.JUGADORES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JUGADORES_OJEADOS" EntityType="Self.JUGADORES_OJEADOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OJEADOS" EntityType="Self.OJEADOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TEMPORADAS_EMPLEADOS" EntityType="Self.TEMPORADAS_EMPLEADOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TEMPORADAS_JUGADORES" EntityType="Self.TEMPORADAS_JUGADORES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_EMPLEADOS_EQUIPOS" Association="Self.FK_EMPLEADOS_EQUIPOS">
+            <End Role="EQUIPOS" EntitySet="EQUIPOS" />
+            <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLEADOS_OJEADOS_OJEADOS" Association="Self.FK_EMPLEADOS_OJEADOS_OJEADOS">
+            <End Role="OJEADOS" EntitySet="OJEADOS" />
+            <End Role="EMPLEADOS_OJEADOS" EntitySet="EMPLEADOS_OJEADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ENTRENADORES_EMPLEADOS" Association="Self.FK_ENTRENADORES_EMPLEADOS">
+            <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
+            <End Role="ENTRENADORES" EntitySet="ENTRENADORES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EQUIPOS_CLUB" Association="Self.FK_EQUIPOS_CLUB">
+            <End Role="CLUB" EntitySet="CLUB" />
+            <End Role="EQUIPOS" EntitySet="EQUIPOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JUGADORES_EMPLEADOS" Association="Self.FK_JUGADORES_EMPLEADOS">
+            <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
+            <End Role="JUGADORES" EntitySet="JUGADORES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JUGADORES_OJEADOS_OJEADOS" Association="Self.FK_JUGADORES_OJEADOS_OJEADOS">
+            <End Role="OJEADOS" EntitySet="OJEADOS" />
+            <End Role="JUGADORES_OJEADOS" EntitySet="JUGADORES_OJEADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OJEADOS_CLUB" Association="Self.FK_OJEADOS_CLUB">
+            <End Role="CLUB" EntitySet="CLUB" />
+            <End Role="OJEADOS" EntitySet="OJEADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TEMPORADAS_EMPLEADOS_EMPLEADOS_OJEADOS" Association="Self.FK_TEMPORADAS_EMPLEADOS_EMPLEADOS_OJEADOS">
+            <End Role="EMPLEADOS_OJEADOS" EntitySet="EMPLEADOS_OJEADOS" />
+            <End Role="TEMPORADAS_EMPLEADOS" EntitySet="TEMPORADAS_EMPLEADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TEMPORADAS_JUGADORES_JUGADORES_OJEADOS" Association="Self.FK_TEMPORADAS_JUGADORES_JUGADORES_OJEADOS">
+            <End Role="JUGADORES_OJEADOS" EntitySet="JUGADORES_OJEADOS" />
+            <End Role="TEMPORADAS_JUGADORES" EntitySet="TEMPORADAS_JUGADORES" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TFG_FUTBOLModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TFG_FUTBOLEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CLUB" EntityType="TFG_FUTBOLModel.CLUB" />
+          <EntitySet Name="EMPLEADOS" EntityType="TFG_FUTBOLModel.EMPLEADOS" />
+          <EntitySet Name="EMPLEADOS_OJEADOS" EntityType="TFG_FUTBOLModel.EMPLEADOS_OJEADOS" />
+          <EntitySet Name="ENTRENADORES" EntityType="TFG_FUTBOLModel.ENTRENADORES" />
+          <EntitySet Name="EQUIPOS" EntityType="TFG_FUTBOLModel.EQUIPOS" />
+          <EntitySet Name="JUGADORES" EntityType="TFG_FUTBOLModel.JUGADORES" />
+          <EntitySet Name="JUGADORES_OJEADOS" EntityType="TFG_FUTBOLModel.JUGADORES_OJEADOS" />
+          <EntitySet Name="OJEADOS" EntityType="TFG_FUTBOLModel.OJEADOS" />
+          <EntitySet Name="TEMPORADAS_EMPLEADOS" EntityType="TFG_FUTBOLModel.TEMPORADAS_EMPLEADOS" />
+          <EntitySet Name="TEMPORADAS_JUGADORES" EntityType="TFG_FUTBOLModel.TEMPORADAS_JUGADORES" />
+          <EntitySet Name="USUARIOS" EntityType="TFG_FUTBOLModel.USUARIOS" />
+          <AssociationSet Name="FK_EQUIPOS_CLUB" Association="TFG_FUTBOLModel.FK_EQUIPOS_CLUB">
+            <End Role="CLUB" EntitySet="CLUB" />
+            <End Role="EQUIPOS" EntitySet="EQUIPOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OJEADOS_CLUB" Association="TFG_FUTBOLModel.FK_OJEADOS_CLUB">
+            <End Role="CLUB" EntitySet="CLUB" />
+            <End Role="OJEADOS" EntitySet="OJEADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLEADOS_EQUIPOS" Association="TFG_FUTBOLModel.FK_EMPLEADOS_EQUIPOS">
+            <End Role="EQUIPOS" EntitySet="EQUIPOS" />
+            <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ENTRENADORES_EMPLEADOS" Association="TFG_FUTBOLModel.FK_ENTRENADORES_EMPLEADOS">
+            <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
+            <End Role="ENTRENADORES" EntitySet="ENTRENADORES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JUGADORES_EMPLEADOS" Association="TFG_FUTBOLModel.FK_JUGADORES_EMPLEADOS">
+            <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
+            <End Role="JUGADORES" EntitySet="JUGADORES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLEADOS_OJEADOS_OJEADOS" Association="TFG_FUTBOLModel.FK_EMPLEADOS_OJEADOS_OJEADOS">
+            <End Role="OJEADOS" EntitySet="OJEADOS" />
+            <End Role="EMPLEADOS_OJEADOS" EntitySet="EMPLEADOS_OJEADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TEMPORADAS_EMPLEADOS_EMPLEADOS_OJEADOS" Association="TFG_FUTBOLModel.FK_TEMPORADAS_EMPLEADOS_EMPLEADOS_OJEADOS">
+            <End Role="EMPLEADOS_OJEADOS" EntitySet="EMPLEADOS_OJEADOS" />
+            <End Role="TEMPORADAS_EMPLEADOS" EntitySet="TEMPORADAS_EMPLEADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JUGADORES_OJEADOS_OJEADOS" Association="TFG_FUTBOLModel.FK_JUGADORES_OJEADOS_OJEADOS">
+            <End Role="OJEADOS" EntitySet="OJEADOS" />
+            <End Role="JUGADORES_OJEADOS" EntitySet="JUGADORES_OJEADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TEMPORADAS_JUGADORES_JUGADORES_OJEADOS" Association="TFG_FUTBOLModel.FK_TEMPORADAS_JUGADORES_JUGADORES_OJEADOS">
+            <End Role="JUGADORES_OJEADOS" EntitySet="JUGADORES_OJEADOS" />
+            <End Role="TEMPORADAS_JUGADORES" EntitySet="TEMPORADAS_JUGADORES" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CLUB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EQUIPOS" Relationship="TFG_FUTBOLModel.FK_EQUIPOS_CLUB" FromRole="CLUB" ToRole="EQUIPOS" />
+          <NavigationProperty Name="OJEADOS" Relationship="TFG_FUTBOLModel.FK_OJEADOS_CLUB" FromRole="CLUB" ToRole="OJEADOS" />
+        </EntityType>
+        <EntityType Name="EMPLEADOS">
+          <Key>
+            <PropertyRef Name="DNI" />
+          </Key>
+          <Property Name="DNI" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PrimerApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SegundoApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono2" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Correo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AnhoNacimiento" Type="Int16" />
+          <Property Name="Valoracion" Type="Int16" />
+          <Property Name="Curriculum" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EquipoID" Type="Int32" />
+          <NavigationProperty Name="EQUIPOS" Relationship="TFG_FUTBOLModel.FK_EMPLEADOS_EQUIPOS" FromRole="EMPLEADOS" ToRole="EQUIPOS" />
+          <NavigationProperty Name="ENTRENADORES" Relationship="TFG_FUTBOLModel.FK_ENTRENADORES_EMPLEADOS" FromRole="EMPLEADOS" ToRole="ENTRENADORES" />
+          <NavigationProperty Name="JUGADORES" Relationship="TFG_FUTBOLModel.FK_JUGADORES_EMPLEADOS" FromRole="EMPLEADOS" ToRole="JUGADORES" />
+        </EntityType>
+        <EntityType Name="EMPLEADOS_OJEADOS">
+          <Key>
+            <PropertyRef Name="DNI" />
+          </Key>
+          <Property Name="DNI" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Formacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Experiencia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OJEADOS" Relationship="TFG_FUTBOLModel.FK_EMPLEADOS_OJEADOS_OJEADOS" FromRole="EMPLEADOS_OJEADOS" ToRole="OJEADOS" />
+          <NavigationProperty Name="TEMPORADAS_EMPLEADOS" Relationship="TFG_FUTBOLModel.FK_TEMPORADAS_EMPLEADOS_EMPLEADOS_OJEADOS" FromRole="EMPLEADOS_OJEADOS" ToRole="TEMPORADAS_EMPLEADOS" />
+        </EntityType>
+        <EntityType Name="ENTRENADORES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Formacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Experiencia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmpleadoDNI" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EMPLEADOS" Relationship="TFG_FUTBOLModel.FK_ENTRENADORES_EMPLEADOS" FromRole="ENTRENADORES" ToRole="EMPLEADOS" />
+        </EntityType>
+        <EntityType Name="EQUIPOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClubID" Type="Int32" />
+          <NavigationProperty Name="CLUB" Relationship="TFG_FUTBOLModel.FK_EQUIPOS_CLUB" FromRole="EQUIPOS" ToRole="CLUB" />
+          <NavigationProperty Name="EMPLEADOS" Relationship="TFG_FUTBOLModel.FK_EMPLEADOS_EQUIPOS" FromRole="EQUIPOS" ToRole="EMPLEADOS" />
+        </EntityType>
+        <EntityType Name="JUGADORES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Posicion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PiernaDominante" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Goles" Type="Int16" />
+          <Property Name="PartidosTitular" Type="Int16" />
+          <Property Name="EmpleadoDNI" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EMPLEADOS" Relationship="TFG_FUTBOLModel.FK_JUGADORES_EMPLEADOS" FromRole="JUGADORES" ToRole="EMPLEADOS" />
+        </EntityType>
+        <EntityType Name="JUGADORES_OJEADOS">
+          <Key>
+            <PropertyRef Name="DNI" />
+          </Key>
+          <Property Name="DNI" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Posicion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PiernaDominante" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ValorDeMercado" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="VencimientoContrato" Type="DateTime" Precision="3" />
+          <Property Name="Altura" Type="Int16" />
+          <Property Name="Peso" Type="Int16" />
+          <Property Name="EnPrestamo" Type="Boolean" />
+          <NavigationProperty Name="OJEADOS" Relationship="TFG_FUTBOLModel.FK_JUGADORES_OJEADOS_OJEADOS" FromRole="JUGADORES_OJEADOS" ToRole="OJEADOS" />
+          <NavigationProperty Name="TEMPORADAS_JUGADORES" Relationship="TFG_FUTBOLModel.FK_TEMPORADAS_JUGADORES_JUGADORES_OJEADOS" FromRole="JUGADORES_OJEADOS" ToRole="TEMPORADAS_JUGADORES" />
+        </EntityType>
+        <EntityType Name="OJEADOS">
+          <Key>
+            <PropertyRef Name="DNI" />
+          </Key>
+          <Property Name="DNI" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Nombres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PrimerApellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SegundoApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono1" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono2" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AnhoNacimiento" Type="Int16" />
+          <Property Name="Valoracion" Type="Int16" />
+          <Property Name="Foto" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IdClub" Type="Int32" />
+          <Property Name="Club" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Pasaporte" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PaisNacimiento" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CLUB1" Relationship="TFG_FUTBOLModel.FK_OJEADOS_CLUB" FromRole="OJEADOS" ToRole="CLUB" />
+          <NavigationProperty Name="EMPLEADOS_OJEADOS" Relationship="TFG_FUTBOLModel.FK_EMPLEADOS_OJEADOS_OJEADOS" FromRole="OJEADOS" ToRole="EMPLEADOS_OJEADOS" />
+          <NavigationProperty Name="JUGADORES_OJEADOS" Relationship="TFG_FUTBOLModel.FK_JUGADORES_OJEADOS_OJEADOS" FromRole="OJEADOS" ToRole="JUGADORES_OJEADOS" />
+        </EntityType>
+        <EntityType Name="TEMPORADAS_EMPLEADOS">
+          <Key>
+            <PropertyRef Name="DNI" />
+            <PropertyRef Name="Temporada" />
+          </Key>
+          <Property Name="DNI" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Temporada" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PartidosJugados" Type="Int16" />
+          <Property Name="Victorias" Type="Int16" />
+          <Property Name="Derrotas" Type="Int16" />
+          <Property Name="Empates" Type="Int16" />
+          <Property Name="Puntos" Type="Int16" />
+          <Property Name="Competicion" Type="Int16" />
+          <Property Name="Club" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EMPLEADOS_OJEADOS" Relationship="TFG_FUTBOLModel.FK_TEMPORADAS_EMPLEADOS_EMPLEADOS_OJEADOS" FromRole="TEMPORADAS_EMPLEADOS" ToRole="EMPLEADOS_OJEADOS" />
+        </EntityType>
+        <EntityType Name="TEMPORADAS_JUGADORES">
+          <Key>
+            <PropertyRef Name="DNI" />
+            <PropertyRef Name="Temporada" />
+          </Key>
+          <Property Name="DNI" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Temporada" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Club" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Competicion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PartidosTitular" Type="Int16" />
+          <Property Name="PartidosSuplente" Type="Int16" />
+          <Property Name="PartidosConvocado" Type="Int16" />
+          <Property Name="MinutosJugados" Type="Int16" />
+          <Property Name="Goles" Type="Int16" />
+          <Property Name="TarjetasAmarillas" Type="Int16" />
+          <Property Name="TarjetasRojas" Type="Int16" />
+          <NavigationProperty Name="JUGADORES_OJEADOS" Relationship="TFG_FUTBOLModel.FK_TEMPORADAS_JUGADORES_JUGADORES_OJEADOS" FromRole="TEMPORADAS_JUGADORES" ToRole="JUGADORES_OJEADOS" />
+        </EntityType>
+        <EntityType Name="USUARIOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PrimerApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SegundoApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NombreUsuario" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Contrasenha" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_EQUIPOS_CLUB">
+          <End Type="TFG_FUTBOLModel.CLUB" Role="CLUB" Multiplicity="0..1" />
+          <End Type="TFG_FUTBOLModel.EQUIPOS" Role="EQUIPOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLUB">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EQUIPOS">
+              <PropertyRef Name="ClubID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OJEADOS_CLUB">
+          <End Type="TFG_FUTBOLModel.CLUB" Role="CLUB" Multiplicity="0..1" />
+          <End Type="TFG_FUTBOLModel.OJEADOS" Role="OJEADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLUB">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OJEADOS">
+              <PropertyRef Name="IdClub" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLEADOS_EQUIPOS">
+          <End Type="TFG_FUTBOLModel.EQUIPOS" Role="EQUIPOS" Multiplicity="0..1" />
+          <End Type="TFG_FUTBOLModel.EMPLEADOS" Role="EMPLEADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EQUIPOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EMPLEADOS">
+              <PropertyRef Name="EquipoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ENTRENADORES_EMPLEADOS">
+          <End Type="TFG_FUTBOLModel.EMPLEADOS" Role="EMPLEADOS" Multiplicity="0..1" />
+          <End Type="TFG_FUTBOLModel.ENTRENADORES" Role="ENTRENADORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLEADOS">
+              <PropertyRef Name="DNI" />
+            </Principal>
+            <Dependent Role="ENTRENADORES">
+              <PropertyRef Name="EmpleadoDNI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JUGADORES_EMPLEADOS">
+          <End Type="TFG_FUTBOLModel.EMPLEADOS" Role="EMPLEADOS" Multiplicity="1" />
+          <End Type="TFG_FUTBOLModel.JUGADORES" Role="JUGADORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLEADOS">
+              <PropertyRef Name="DNI" />
+            </Principal>
+            <Dependent Role="JUGADORES">
+              <PropertyRef Name="EmpleadoDNI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLEADOS_OJEADOS_OJEADOS">
+          <End Type="TFG_FUTBOLModel.OJEADOS" Role="OJEADOS" Multiplicity="1" />
+          <End Type="TFG_FUTBOLModel.EMPLEADOS_OJEADOS" Role="EMPLEADOS_OJEADOS" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="OJEADOS">
+              <PropertyRef Name="DNI" />
+            </Principal>
+            <Dependent Role="EMPLEADOS_OJEADOS">
+              <PropertyRef Name="DNI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TEMPORADAS_EMPLEADOS_EMPLEADOS_OJEADOS">
+          <End Type="TFG_FUTBOLModel.EMPLEADOS_OJEADOS" Role="EMPLEADOS_OJEADOS" Multiplicity="1" />
+          <End Type="TFG_FUTBOLModel.TEMPORADAS_EMPLEADOS" Role="TEMPORADAS_EMPLEADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLEADOS_OJEADOS">
+              <PropertyRef Name="DNI" />
+            </Principal>
+            <Dependent Role="TEMPORADAS_EMPLEADOS">
+              <PropertyRef Name="DNI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JUGADORES_OJEADOS_OJEADOS">
+          <End Type="TFG_FUTBOLModel.OJEADOS" Role="OJEADOS" Multiplicity="1" />
+          <End Type="TFG_FUTBOLModel.JUGADORES_OJEADOS" Role="JUGADORES_OJEADOS" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="OJEADOS">
+              <PropertyRef Name="DNI" />
+            </Principal>
+            <Dependent Role="JUGADORES_OJEADOS">
+              <PropertyRef Name="DNI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TEMPORADAS_JUGADORES_JUGADORES_OJEADOS">
+          <End Type="TFG_FUTBOLModel.JUGADORES_OJEADOS" Role="JUGADORES_OJEADOS" Multiplicity="1" />
+          <End Type="TFG_FUTBOLModel.TEMPORADAS_JUGADORES" Role="TEMPORADAS_JUGADORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JUGADORES_OJEADOS">
+              <PropertyRef Name="DNI" />
+            </Principal>
+            <Dependent Role="TEMPORADAS_JUGADORES">
+              <PropertyRef Name="DNI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TFG_FUTBOLModelStoreContainer" CdmEntityContainer="TFG_FUTBOLEntities">
+          <EntitySetMapping Name="CLUB">
+            <EntityTypeMapping TypeName="TFG_FUTBOLModel.CLUB">
+              <MappingFragment StoreEntitySet="CLUB">
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLEADOS">
+            <EntityTypeMapping TypeName="TFG_FUTBOLModel.EMPLEADOS">
+              <MappingFragment StoreEntitySet="EMPLEADOS">
+                <ScalarProperty Name="EquipoID" ColumnName="EquipoID" />
+                <ScalarProperty Name="Curriculum" ColumnName="Curriculum" />
+                <ScalarProperty Name="Valoracion" ColumnName="Valoracion" />
+                <ScalarProperty Name="AnhoNacimiento" ColumnName="AnhoNacimiento" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Telefono2" ColumnName="Telefono2" />
+                <ScalarProperty Name="Telefono1" ColumnName="Telefono1" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLEADOS_OJEADOS">
+            <EntityTypeMapping TypeName="TFG_FUTBOLModel.EMPLEADOS_OJEADOS">
+              <MappingFragment StoreEntitySet="EMPLEADOS_OJEADOS">
+                <ScalarProperty Name="Experiencia" ColumnName="Experiencia" />
+                <ScalarProperty Name="Formacion" ColumnName="Formacion" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ENTRENADORES">
+            <EntityTypeMapping TypeName="TFG_FUTBOLModel.ENTRENADORES">
+              <MappingFragment StoreEntitySet="ENTRENADORES">
+                <ScalarProperty Name="EmpleadoDNI" ColumnName="EmpleadoDNI" />
+                <ScalarProperty Name="Experiencia" ColumnName="Experiencia" />
+                <ScalarProperty Name="Formacion" ColumnName="Formacion" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EQUIPOS">
+            <EntityTypeMapping TypeName="TFG_FUTBOLModel.EQUIPOS">
+              <MappingFragment StoreEntitySet="EQUIPOS">
+                <ScalarProperty Name="ClubID" ColumnName="ClubID" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JUGADORES">
+            <EntityTypeMapping TypeName="TFG_FUTBOLModel.JUGADORES">
+              <MappingFragment StoreEntitySet="JUGADORES">
+                <ScalarProperty Name="EmpleadoDNI" ColumnName="EmpleadoDNI" />
+                <ScalarProperty Name="PartidosTitular" ColumnName="PartidosTitular" />
+                <ScalarProperty Name="Goles" ColumnName="Goles" />
+                <ScalarProperty Name="PiernaDominante" ColumnName="PiernaDominante" />
+                <ScalarProperty Name="Posicion" ColumnName="Posicion" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JUGADORES_OJEADOS">
+            <EntityTypeMapping TypeName="TFG_FUTBOLModel.JUGADORES_OJEADOS">
+              <MappingFragment StoreEntitySet="JUGADORES_OJEADOS">
+                <ScalarProperty Name="EnPrestamo" ColumnName="EnPrestamo" />
+                <ScalarProperty Name="Peso" ColumnName="Peso" />
+                <ScalarProperty Name="Altura" ColumnName="Altura" />
+                <ScalarProperty Name="VencimientoContrato" ColumnName="VencimientoContrato" />
+                <ScalarProperty Name="ValorDeMercado" ColumnName="ValorDeMercado" />
+                <ScalarProperty Name="PiernaDominante" ColumnName="PiernaDominante" />
+                <ScalarProperty Name="Posicion" ColumnName="Posicion" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OJEADOS">
+            <EntityTypeMapping TypeName="TFG_FUTBOLModel.OJEADOS">
+              <MappingFragment StoreEntitySet="OJEADOS">
+                <ScalarProperty Name="PaisNacimiento" ColumnName="PaisNacimiento" />
+                <ScalarProperty Name="Pasaporte" ColumnName="Pasaporte" />
+                <ScalarProperty Name="Club" ColumnName="Club" />
+                <ScalarProperty Name="IdClub" ColumnName="IdClub" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+                <ScalarProperty Name="Valoracion" ColumnName="Valoracion" />
+                <ScalarProperty Name="AnhoNacimiento" ColumnName="AnhoNacimiento" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Telefono2" ColumnName="Telefono2" />
+                <ScalarProperty Name="Telefono1" ColumnName="Telefono1" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TEMPORADAS_EMPLEADOS">
+            <EntityTypeMapping TypeName="TFG_FUTBOLModel.TEMPORADAS_EMPLEADOS">
+              <MappingFragment StoreEntitySet="TEMPORADAS_EMPLEADOS">
+                <ScalarProperty Name="Club" ColumnName="Club" />
+                <ScalarProperty Name="Competicion" ColumnName="Competicion" />
+                <ScalarProperty Name="Puntos" ColumnName="Puntos" />
+                <ScalarProperty Name="Empates" ColumnName="Empates" />
+                <ScalarProperty Name="Derrotas" ColumnName="Derrotas" />
+                <ScalarProperty Name="Victorias" ColumnName="Victorias" />
+                <ScalarProperty Name="PartidosJugados" ColumnName="PartidosJugados" />
+                <ScalarProperty Name="Temporada" ColumnName="Temporada" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TEMPORADAS_JUGADORES">
+            <EntityTypeMapping TypeName="TFG_FUTBOLModel.TEMPORADAS_JUGADORES">
+              <MappingFragment StoreEntitySet="TEMPORADAS_JUGADORES">
+                <ScalarProperty Name="TarjetasRojas" ColumnName="TarjetasRojas" />
+                <ScalarProperty Name="TarjetasAmarillas" ColumnName="TarjetasAmarillas" />
+                <ScalarProperty Name="Goles" ColumnName="Goles" />
+                <ScalarProperty Name="MinutosJugados" ColumnName="MinutosJugados" />
+                <ScalarProperty Name="PartidosConvocado" ColumnName="PartidosConvocado" />
+                <ScalarProperty Name="PartidosSuplente" ColumnName="PartidosSuplente" />
+                <ScalarProperty Name="PartidosTitular" ColumnName="PartidosTitular" />
+                <ScalarProperty Name="Competicion" ColumnName="Competicion" />
+                <ScalarProperty Name="Club" ColumnName="Club" />
+                <ScalarProperty Name="Temporada" ColumnName="Temporada" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIOS">
+            <EntityTypeMapping TypeName="TFG_FUTBOLModel.USUARIOS">
+              <MappingFragment StoreEntitySet="USUARIOS">
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Contrasenha" ColumnName="Contrasenha" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

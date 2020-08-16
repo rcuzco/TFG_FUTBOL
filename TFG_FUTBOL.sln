@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TFG_FUTBOL", "TFG_FUTBOL.csproj", "{978A7735-B653-41AA-B999-B9D54DF4C4EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyDataAccess", "..\DummyDataAccess\DummyDataAccess.csproj", "{244ADB19-C0C3-4E80-96B5-854725192EEE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyDataAccess", "DummyDataAccess\DummyDataAccess.csproj", "{244ADB19-C0C3-4E80-96B5-854725192EEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyWebApi", "..\DummyWebApi\DummyWebApi.csproj", "{7D7068F7-D656-42AF-88A4-4698BC9B5703}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyWebApi", "DummyWebApi\DummyWebApi.csproj", "{7D7068F7-D656-42AF-88A4-4698BC9B5703}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
