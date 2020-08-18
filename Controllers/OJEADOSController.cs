@@ -548,6 +548,102 @@ namespace TFG_FUTBOL.Controllers
             return View(jugadoresOjeadosViewModel);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CrearRegistro([Bind("DNI,Nombres,PrimerApellido,SegundoApellido,Telefono1,Telefono2,Correo,AnhoNacimiento,Valoracion,IdClub,Posicion,PiernaDominante,Goles,Club,ValorDeMercado,VencimientoContrato,PartidosJugados,PaisNacimiento,Pasaporte,Altura,Peso,EnPrestamo,Foto,ArchivoFoto")] JugadoresOjeadosViewModel oJEADOS)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    OJEADOS o = new OJEADOS();
+                    JUGADORES_OJEADOS jo = new JUGADORES_OJEADOS();
+                    
+                    o.DNI = oJEADOS.DNI;                    
+                    o.Nombres = oJEADOS.Nombres;
+                    o.PrimerApellido = oJEADOS.PrimerApellido;
+                    o.SegundoApellido = oJEADOS.SegundoApellido;
+                    o.Telefono1 = oJEADOS.Telefono1;
+                    o.Telefono2 = oJEADOS.Telefono2;
+                    o.Correo = oJEADOS.Correo;
+                    o.AnhoNacimiento = oJEADOS.AnhoNacimiento;
+                    o.Valoracion = oJEADOS.Valoracion;
+                    o.Foto = UploadedFile(oJEADOS) ?? o.Foto;
+                    o.IdClub = oJEADOS.IdClub;
+                    o.Club = oJEADOS.Club;
+                    o.Pasaporte = oJEADOS.Pasaporte; 
+                    o.PaisNacimiento = oJEADOS.PaisNacimiento;
+
+                    jo.DNI = oJEADOS.DNI;
+                    jo.Posicion = oJEADOS.Posicion;
+                    jo.PiernaDominante = oJEADOS.PiernaDominante;
+                    jo.ValorDeMercado = oJEADOS.ValorDeMercado;
+                    jo.VencimientoContrato = oJEADOS.VencimientoContrato;
+                    jo.Altura = oJEADOS.Altura;
+                    jo.Peso = oJEADOS.Peso;
+                    jo.EnPrestamo = oJEADOS.EnPrestamo;
+
+                    _context.OJEADOS.Add(o);
+                    await _context.SaveChangesAsync();
+                    _context.JUGADORES_OJEADOS.Add(jo);
+                    await _context.SaveChangesAsync();
+
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+                return RedirectToAction(nameof(BusquedaAvanzada));
+            }
+            return View(oJEADOS);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CrearRegistroEmpleado([Bind("DNI,Nombres,PrimerApellido,SegundoApellido,Telefono1,Telefono2,Correo,AnhoNacimiento,Valoracion,IdClub,Club,PaisNacimiento,Pasaporte,Formacion,Experiencia,Foto,ArchivoFoto")] EmpleadosOjeadosViewModel oJEADOS)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    OJEADOS o = new OJEADOS();
+                    EMPLEADOS_OJEADOS jo = new EMPLEADOS_OJEADOS();
+
+                    o.DNI = oJEADOS.DNI;
+                    o.Nombres = oJEADOS.Nombres;
+                    o.PrimerApellido = oJEADOS.PrimerApellido;
+                    o.SegundoApellido = oJEADOS.SegundoApellido;
+                    o.Telefono1 = oJEADOS.Telefono1;
+                    o.Telefono2 = oJEADOS.Telefono2;
+                    o.Correo = oJEADOS.Correo;
+                    o.AnhoNacimiento = oJEADOS.AnhoNacimiento;
+                    o.Valoracion = oJEADOS.Valoracion;
+                    o.Foto = UploadedFileEmpleado(oJEADOS) ?? o.Foto;
+                    o.IdClub = oJEADOS.IdClub;
+                    o.Club = oJEADOS.Club;
+                    o.Pasaporte = oJEADOS.Pasaporte;
+                    o.PaisNacimiento = oJEADOS.PaisNacimiento;
+
+                    jo.DNI = oJEADOS.DNI;
+                    jo.Formacion = oJEADOS.Formacion;
+                    jo.Experiencia = oJEADOS.Experiencia;
+
+                    _context.OJEADOS.Add(o);
+                    await _context.SaveChangesAsync();
+                    _context.EMPLEADOS_OJEADOS.Add(jo);
+                    await _context.SaveChangesAsync();
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+                return RedirectToAction(nameof(BusquedaAvanzadaEmpleados));
+            }
+            return View(oJEADOS);
+        }
+
+
         public IActionResult CrearRegistroEmpleado()
         {
             EmpleadosOjeadosViewModel jugadoresOjeadosViewModel = new EmpleadosOjeadosViewModel();
