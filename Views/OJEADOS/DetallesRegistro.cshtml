@@ -12,158 +12,170 @@
             <div class="card border-primary mb-3">
                 <div class="card-header">INFO JUGADOR</div>
                 <div class="card-body text-primary">
-                    <h5 class="card-title">
-                        @Model.NombresCompletos
-                    </h5>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Datos Principales</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Temporadas</a>
+                        </li>                        
+                    </ul>
+                    <div class="tab-content tab-border p-3" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <h5 class="card-title">
+                                @Model.NombresCompletos
+                            </h5>
+                            <div class="card border-light flex-md-row mb-4 shadow-sm h-md-250">
+                                <img class="card-img-right flex-auto d-none d-lg-block" data-src="~/img/ojeados/jugadores/@Model.Foto" src="~/img/ojeados/jugadores/@Model.Foto" alt="@Model.NombresCompletos" style="width:128px;">
+                                <div class="card-body d-flex flex-column align-items-start">
+                                    <strong class="d-inline-block mb-2 text-primary">@Model.Posicion</strong>
+                                    <h3 class="mb-0">
+                                        <a class="text-dark" href="#">Valor de mercado: @string.Format("{0:C}", Model.ValorDeMercado)</a>
+                                    </h3>
+                                    <div class="mb-1 text-muted">Nacido en el año @Model.AnhoNacimiento</div>
+                                </div>
+                            </div>
+                            <dl class="row">
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Nombres)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Nombres)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.PrimerApellido)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.PrimerApellido)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.SegundoApellido)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.SegundoApellido)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Telefono1)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Telefono1)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Telefono2)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Telefono2)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Correo)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Correo)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.AnhoNacimiento)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.AnhoNacimiento)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Valoracion)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Valoracion)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.IdClub)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.IdClub)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Posicion)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Posicion)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.PiernaDominante)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.PiernaDominante)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Goles)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Goles)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Club)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Club)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.ValorDeMercado)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.ValorDeMercado)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.VencimientoContrato)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.VencimientoContrato)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.PartidosJugados)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.PartidosJugados)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.PaisNacimiento)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.PaisNacimiento)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Pasaporte)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Pasaporte)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Altura)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Altura)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Peso)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Peso)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.EnPrestamo)
+                                </dt>
 
-                    <div class="card border-light flex-md-row mb-4 shadow-sm h-md-250">
-                        <img class="card-img-right flex-auto d-none d-lg-block" data-src="~/img/ojeados/jugadores/@Model.Foto" src="~/img/ojeados/jugadores/@Model.Foto" alt="@Model.NombresCompletos" style="width:128px;">
-                        <div class="card-body d-flex flex-column align-items-start">
-                            <strong class="d-inline-block mb-2 text-primary">@Model.Posicion</strong>
-                            <h3 class="mb-0">
-                                <a class="text-dark" href="#">Valor de mercado: @string.Format("{0:C}", Model.ValorDeMercado)</a>
-                            </h3>
-                            <div class="mb-1 text-muted">Nacido en el año @Model.AnhoNacimiento</div>
+                                @if (Model.EnPrestamo.HasValue && Model.EnPrestamo.Value)
+                                {
+                                    <dd class="col-sm-10">Sí</dd>
+                                }
+                                else
+                                {
+                                    <dd class="col-sm-10">No</dd>
+                                }
+                            </dl>
                         </div>
-                    </div>
-                    <dl class="row">
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.Nombres)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.Nombres)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.PrimerApellido)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.PrimerApellido)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.SegundoApellido)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.SegundoApellido)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.Telefono1)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.Telefono1)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.Telefono2)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.Telefono2)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.Correo)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.Correo)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.AnhoNacimiento)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.AnhoNacimiento)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.Valoracion)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.Valoracion)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.IdClub)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.IdClub)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.Posicion)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.Posicion)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.PiernaDominante)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.PiernaDominante)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.Goles)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.Goles)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.Club)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.Club)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.ValorDeMercado)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.ValorDeMercado)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.VencimientoContrato)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.VencimientoContrato)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.PartidosJugados)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.PartidosJugados)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.PaisNacimiento)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.PaisNacimiento)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.Pasaporte)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.Pasaporte)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.Altura)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.Altura)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.Peso)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.Peso)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.EnPrestamo)
-                        </dt>
-
-                        @if (Model.EnPrestamo.HasValue && Model.EnPrestamo.Value)
-                        {
-                            <dd class="col-sm-10">Sí</dd>
-                        }
-                        else
-                        {
-                            <dd class="col-sm-10">No</dd>
-                        }
-                    </dl>
-                    <div>
-                        <a asp-action="EditarRegistro" asp-route-id="@Model.DNI" class="btn btn-outline-primary">Editar</a> |
-                        <a asp-action="BusquedaAvanzada" class="btn btn-outline-secondary">Volver al listado</a>
-                    </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">2</div>                        
+                    </div>                    
+                </div>
+                <div class="card-footer text-muted text-right">
+                    <a asp-action="EditarRegistro" asp-route-id="@Model.DNI" class="btn btn-outline-primary">Editar</a> |
+                    <a asp-action="BusquedaAvanzada" class="btn btn-outline-secondary">Volver al listado</a>
                 </div>
             </div>
         </div>

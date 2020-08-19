@@ -11,8 +11,8 @@
         <div class="col-md-12">
             <div class="card border-primary mb-3">
                 <div class="card-header">INFO JUGADOR</div>
-                <div class="card-body text-primary">
-                    <form asp-action="EditarRegistro"  enctype="multipart/form-data">
+                <form asp-action="EditarRegistro" enctype="multipart/form-data">
+                    <div class="card-body text-primary">
                         <input type="hidden" asp-for="DNI" />
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <h5 class="card-title form-group row">
@@ -47,7 +47,7 @@
                             </div>
                             <span asp-validation-for="ArchivoFoto" class="text-danger"></span>
                         </div>
-                        
+
                         <div class="form-group row">
                             <label asp-for="Telefono1" class="col-sm-2 col-form-label"></label>
                             <div class="col-sm-10">
@@ -99,7 +99,7 @@
                         </div>
                         <div class="form-group row">
                             <label asp-for="PiernaDominante" class="col-sm-2 col-form-label"></label>
-                            <div class="col-sm-10">                                
+                            <div class="col-sm-10">
                                 <select asp-for="PiernaDominante" class="form-control">
                                     <option value="I">Izquierda</option>
                                     <option value="D">Derecha</option>
@@ -187,12 +187,12 @@
                             </div>
                             <span asp-validation-for="Foto" class="text-danger"></span>
                         </div>
-                        <div>
-                            <input type="submit" value="Guardar Cambios" class="btn btn-outline-success" />
-                            <a asp-action="BusquedaAvanzada" class="btn btn-outline-secondary">Volver al listado</a>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="card-footer text-muted text-right">
+                        <input type="submit" value="Guardar Cambios" class="btn btn-outline-success" />
+                        <a asp-action="BusquedaAvanzada" class="btn btn-outline-secondary">Volver al listado</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -200,15 +200,13 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
-    
+
     <script type="text/javascript">
         // Add the following code if you want the name of the file appear on select
-        $("#ImgJugador").click(function ()
-        {
+        $("#ImgJugador").click(function () {
             $("#customFile").click();
         });
-        $(".custom-file-input").on("change", function ()
-        {
+        $(".custom-file-input").on("change", function () {
             var fileName = $(this).val().split("\\").pop();
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
         });

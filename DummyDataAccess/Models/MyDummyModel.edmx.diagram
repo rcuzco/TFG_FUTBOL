@@ -14,7 +14,7 @@
         <EntityTypeShape EntityType="TFG_FUTBOLModel.JUGADORES_OJEADOS" Width="1.5" PointX="5.25" PointY="7.5" />
         <EntityTypeShape EntityType="TFG_FUTBOLModel.OJEADOS" Width="1.5" PointX="3" PointY="8.625" />
         <EntityTypeShape EntityType="TFG_FUTBOLModel.TEMPORADAS_EMPLEADOS" Width="1.5" PointX="7.5" PointY="11.375" />
-        <EntityTypeShape EntityType="TFG_FUTBOLModel.TEMPORADAS_JUGADORES" Width="1.5" PointX="7.5" PointY="7.375" />
+        <EntityTypeShape EntityType="TFG_FUTBOLModel.TEMPORADAS_JUGADORES" Width="2.75" PointX="7.5" PointY="7.375" />
         <EntityTypeShape EntityType="TFG_FUTBOLModel.USUARIOS" Width="1.5" PointX="9.75" PointY="0.75" />
         <AssociationConnector Association="TFG_FUTBOLModel.FK_EQUIPOS_CLUB" />
         <AssociationConnector Association="TFG_FUTBOLModel.FK_OJEADOS_CLUB" />
