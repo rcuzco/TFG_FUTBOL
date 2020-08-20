@@ -1,0 +1,92 @@
+﻿@model TFG_FUTBOL.DataModels.TEMPORADAS_JUGADORES
+
+<h4>TEMPORADAS_JUGADORES</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form id="FrmEditarTemporada" asp-action="EditarTemporadaJugador">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="DNI" />
+            <input type="hidden" asp-for="Temporada" />
+            <div class="form-group">
+                <label asp-for="Club" class="control-label"></label>
+                <input asp-for="Club" class="form-control" />
+                <span asp-validation-for="Club" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Competicion" class="control-label"></label>
+                <input asp-for="Competicion" class="form-control" />
+                <span asp-validation-for="Competicion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PartidosTitular" class="control-label"></label>
+                <input asp-for="PartidosTitular" class="form-control" />
+                <span asp-validation-for="PartidosTitular" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PartidosSuplente" class="control-label"></label>
+                <input asp-for="PartidosSuplente" class="form-control" />
+                <span asp-validation-for="PartidosSuplente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PartidosConvocado" class="control-label"></label>
+                <input asp-for="PartidosConvocado" class="form-control" />
+                <span asp-validation-for="PartidosConvocado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MinutosJugados" class="control-label"></label>
+                <input asp-for="MinutosJugados" class="form-control" />
+                <span asp-validation-for="MinutosJugados" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Goles" class="control-label"></label>
+                <input asp-for="Goles" class="form-control" />
+                <span asp-validation-for="Goles" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TarjetasAmarillas" class="control-label"></label>
+                <input asp-for="TarjetasAmarillas" class="form-control" />
+                <span asp-validation-for="TarjetasAmarillas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TarjetasRojas" class="control-label"></label>
+                <input asp-for="TarjetasRojas" class="form-control" />
+                <span asp-validation-for="TarjetasRojas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input  type="submit" value="Guardar" class="btn btn-outline-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a id="HplVolverAlListado" class="btn btn-outline-secondary cursor-pointer">Volver al listado de temporadas</a>
+</div>
+
+<script>
+    $("#HplVolverAlListado").click(function ()
+    {
+        $("#DivEditarTemporada").hide("slow");
+        $("#DivListaTemporadas").show("slow");
+    });
+
+    $("#FrmEditarTemporada").submit(function (e)
+    {
+        e.preventDefault();
+        var datos = $(this).serializeArray();
+        $.post("/OJEADOS/EditarTemporadaJugador/@Model.DNI/" + encodeURIComponent('@Model.Temporada'), datos)
+            .done(function (data)
+            {
+                if (data)
+                {
+                    //actualización correcta
+                    window.location.replace("http://localhost:2814/OJEADOS/DetallesRegistro/" + data.dni + "?cargartab");                    
+                }
+            })
+            .fail(function (error)
+            {
+                alert(error);
+            });
+    });
+</script>

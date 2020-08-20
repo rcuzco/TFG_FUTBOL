@@ -61,12 +61,13 @@ namespace TFG_FUTBOL
             app.UseAuthorization();            
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/login", async context =>
-                {
-                    context.Response.Redirect("/USUARIOS/Login");
-                });
-                endpoints.MapControllerRoute(name: "default", pattern: "{controller=CLUB}/{action=Index}/{id?}");
-                
+                //endpoints.MapGet("/login", async context =>
+                //{
+                //    context.Response.Redirect("/USUARIOS/Login");
+                //});
+                endpoints.MapControllerRoute(name: "default", pattern: "{controller=USUARIOS}/{action=login}/{id?}");
+                endpoints.MapControllerRoute(name: "default", pattern: "{controller=USUARIOS}/{action=login}/{dni?}/{id?}");                
+
             });
         }
     }

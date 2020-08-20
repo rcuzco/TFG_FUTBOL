@@ -1,0 +1,73 @@
+﻿@model TFG_FUTBOL.DataModels.TEMPORADAS_JUGADORES
+
+<div>
+    <h4>TEMPORADAS_JUGADORES</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Club)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Club)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Competicion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Competicion)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PartidosTitular)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PartidosTitular)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PartidosSuplente)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PartidosSuplente)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PartidosConvocado)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PartidosConvocado)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MinutosJugados)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MinutosJugados)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Goles)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Goles)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TarjetasAmarillas)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TarjetasAmarillas)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TarjetasRojas)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TarjetasRojas)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a id="HplVolverAlListado" class="btn btn-outline-secondary cursor-pointer">Volver al listado de temporadas</a>
+</div>
+
+<script>
+    $("#HplVolverAlListado").click(function ()
+    {
+        $("#DivDetalleTemporada").hide("slow");
+        $("#DivListaTemporadas").show("slow");
+    });        
+</script>

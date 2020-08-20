@@ -78,5 +78,6 @@ namespace TFG_FUTBOL.Models
         public string Foto { get; set; }
 
         public IFormFile ArchivoFoto { get; set; }
+        public List<TEMPORADAS_JUGADORES> Temporadas { get; set; }
     }
 }

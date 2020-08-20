@@ -238,6 +238,7 @@ namespace TFG_FUTBOL.Controllers
             JugadoresOjeadosViewModel jugadoresOjeadosViewModel = new JugadoresOjeadosViewModel();
             var o = await _context.OJEADOS.FirstOrDefaultAsync(m => m.DNI == id);
             var jo = await _context.JUGADORES_OJEADOS.FirstOrDefaultAsync(d => d.DNI == id);
+            var dt = _context.TEMPORADAS_JUGADORES.Where(d => d.DNI == id).ToList();
             if (o != null)
             {
 
@@ -269,8 +270,10 @@ namespace TFG_FUTBOL.Controllers
                 jugadoresOjeadosViewModel.VencimientoContrato = jo.VencimientoContrato;
             }
 
-
-
+            if (dt != null && dt.Any())
+            {
+                jugadoresOjeadosViewModel.Temporadas = dt;
+            }
 
             return View(jugadoresOjeadosViewModel);
         }
@@ -648,6 +651,94 @@ namespace TFG_FUTBOL.Controllers
         {
             EmpleadosOjeadosViewModel jugadoresOjeadosViewModel = new EmpleadosOjeadosViewModel();
             return View(jugadoresOjeadosViewModel);
+        }
+
+        public IActionResult GetPartial()
+        {
+            List<string> countries = new List<string>();
+            countries.Add("USA");
+            countries.Add("UK");
+            countries.Add("India");
+
+            return PartialView("_CountriesPartial", countries);
+        }
+
+        [HttpGet]        
+        public IActionResult ObtenerTemporadaJugador(string dni, string id)
+        {            
+            TEMPORADAS_JUGADORES temporada = new TEMPORADAS_JUGADORES();
+            temporada = _context.TEMPORADAS_JUGADORES.FirstOrDefault(d=>d.DNI == dni && d.Temporada == id);
+            return PartialView("_DetallesTemporadaJugadorPartial", temporada);
+        }
+
+        [HttpGet]
+        public IActionResult EditarTemporadaJugador(string dni, string id)
+        {
+            TEMPORADAS_JUGADORES temporada = new TEMPORADAS_JUGADORES();
+            temporada = _context.TEMPORADAS_JUGADORES.FirstOrDefault(d => d.DNI == dni && d.Temporada == id);
+            return PartialView("_EditarTemporadaJugadorPartial", temporada);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditarTemporadaJugador(string dni, string id, [Bind ("Club,Competicion,PartidosTitular,PartidosSuplente,PartidosConvocado,MinutosJugados,Goles,TarjetasAmarillas,TarjetasRojas")]TEMPORADAS_JUGADORES datosTemporada)
+        {
+            TEMPORADAS_JUGADORES temporada = new TEMPORADAS_JUGADORES();            
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    temporada = _context.TEMPORADAS_JUGADORES.FirstOrDefault(d => d.DNI == dni && d.Temporada == id);                    
+                    if (temporada != null)
+                    {
+                        temporada.Club = datosTemporada.Club;
+                        temporada.Competicion = datosTemporada.Competicion;
+                        temporada.PartidosTitular = datosTemporada.PartidosTitular;
+                        temporada.PartidosSuplente = datosTemporada.PartidosSuplente;
+                        temporada.PartidosConvocado = datosTemporada.PartidosConvocado;
+                        temporada.MinutosJugados = datosTemporada.MinutosJugados;
+                        temporada.Goles = datosTemporada.Goles;
+                        temporada.TarjetasAmarillas = datosTemporada.TarjetasAmarillas;
+                        temporada.TarjetasRojas = datosTemporada.TarjetasRojas;
+                    }
+                    _context.Update(temporada);
+                    _context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
+            return Ok(temporada);
+        }
+
+        [HttpGet]
+        public IActionResult CrearTemporadaJugador(string id)
+        {
+            TEMPORADAS_JUGADORES temporada = new TEMPORADAS_JUGADORES();
+            temporada.DNI = id;
+            return PartialView("_CrearTemporadaJugadorPartial", temporada);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CrearTemporadaJugador(string id, [Bind("Temporada,Club,Competicion,PartidosTitular,PartidosSuplente,PartidosConvocado,MinutosJugados,Goles,TarjetasAmarillas,TarjetasRojas")] TEMPORADAS_JUGADORES datosTemporada)
+        {
+            datosTemporada.DNI = id;
+            
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.TEMPORADAS_JUGADORES.Add(datosTemporada);
+                    _context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
+            return Ok(datosTemporada);
         }
     }
 }

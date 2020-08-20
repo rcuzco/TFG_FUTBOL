@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,7 +8,9 @@ namespace TFG_FUTBOL.DataModels
 {
     public class TEMPORADAS_JUGADORES
     {
+        [Key]
         public string DNI { get; set; }
+        [Key]
         public string Temporada { get; set; }
         public string Club { get; set; }
         public string Competicion { get; set; }

@@ -17,6 +17,8 @@ namespace TFG_FUTBOL.DataContext
         public virtual DbSet<CLUB> CLUB { get; set; }
         public virtual DbSet<EMPLEADOS_OJEADOS> EMPLEADOS_OJEADOS { get; set; }
         public virtual DbSet<JUGADORES_OJEADOS> JUGADORES_OJEADOS { get; set; }
+        public virtual DbSet<TEMPORADAS_JUGADORES> TEMPORADAS_JUGADORES { get; set; }
+        public virtual DbSet<TEMPORADAS_EMPLEADOS> TEMPORADAS_EMPLEADOS { get; set; }
         public virtual DbSet<OJEADOS> OJEADOS { get; set; }
 
         public virtual DbSet<EMPLEADOS> EMPLEADOS { get; set; }
@@ -30,6 +32,8 @@ namespace TFG_FUTBOL.DataContext
             modelBuilder.Entity<EMPLEADOS>().HasKey(c => new { c.DNI });
             modelBuilder.Entity<JUGADORES_OJEADOS>().HasKey(c => new { c.DNI });
             modelBuilder.Entity<EMPLEADOS_OJEADOS>().HasKey(c => new { c.DNI });
+            modelBuilder.Entity<TEMPORADAS_JUGADORES>().HasKey(c => new { c.DNI, c.Temporada });
+            modelBuilder.Entity<TEMPORADAS_EMPLEADOS>().HasKey(c => new { c.DNI, c.Temporada });
             modelBuilder.Entity<USUARIOS>().HasKey(c => new { c.ID });
             modelBuilder.Entity<JugadoresOjeadosViewModel>().Ignore(c => c.ArchivoFoto);
             base.OnModelCreating(modelBuilder);
