@@ -18,8 +18,6 @@ namespace TFG_FUTBOL.DataModels
         public Nullable<short> Empates { get; set; }
         public Nullable<short> Puntos { get; set; }
         public Nullable<short> Competicion { get; set; }
-        public string Club { get; set; }
-
-        public virtual EMPLEADOS_OJEADOS EMPLEADOS_OJEADOS { get; set; }
+        public string Club { get; set; }        
     }
 }

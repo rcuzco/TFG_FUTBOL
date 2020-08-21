@@ -1,0 +1,82 @@
+﻿@model TFG_FUTBOL.DataModels.TEMPORADAS_EMPLEADOS
+
+<h4>TEMPORADAS_EMPLEADOS</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="_EditarTemporadaEmpleadoPartial">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="DNI" />
+            <input type="hidden" asp-for="Temporada" />
+            <div class="form-group">
+                <label asp-for="PartidosJugados" class="control-label"></label>
+                <input asp-for="PartidosJugados" class="form-control" />
+                <span asp-validation-for="PartidosJugados" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Victorias" class="control-label"></label>
+                <input asp-for="Victorias" class="form-control" />
+                <span asp-validation-for="Victorias" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Derrotas" class="control-label"></label>
+                <input asp-for="Derrotas" class="form-control" />
+                <span asp-validation-for="Derrotas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Empates" class="control-label"></label>
+                <input asp-for="Empates" class="form-control" />
+                <span asp-validation-for="Empates" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Puntos" class="control-label"></label>
+                <input asp-for="Puntos" class="form-control" />
+                <span asp-validation-for="Puntos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Competicion" class="control-label"></label>
+                <input asp-for="Competicion" class="form-control" />
+                <span asp-validation-for="Competicion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Club" class="control-label"></label>
+                <input asp-for="Club" class="form-control" />
+                <span asp-validation-for="Club" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-outline-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a id="HplVolverAlListado" class="btn btn-outline-secondary cursor-pointer">Volver al listado de temporadas</a>
+</div>
+
+<script>
+    $("#HplVolverAlListado").click(function ()
+    {
+        $("#DivEditarTemporada").hide("slow");
+        $("#DivListaTemporadas").show("slow");
+    });
+
+    $("#FrmEditarTemporada").submit(function (e)
+    {
+        e.preventDefault();
+        var datos = $(this).serializeArray();
+        $.post("/OJEADOS/EditarTemporadaEmpleado/@Model.DNI/" + encodeURIComponent('@Model.Temporada'), datos)
+            .done(function (data)
+            {
+                if (data)
+                {
+                    //actualización correcta
+                    window.location.replace("http://localhost:2814/OJEADOS/DetallesRegistroEmpleado/" + data.dni + "?cargartab");
+                }
+            })
+            .fail(function (error)
+            {
+                alert(error);
+            });
+    });
+</script>

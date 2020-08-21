@@ -1,0 +1,60 @@
+﻿@model TFG_FUTBOL.DataModels.TEMPORADAS_EMPLEADOS
+
+<div>
+    <h4>TEMPORADAS_EMPLEADOS</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PartidosJugados)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PartidosJugados)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Victorias)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Victorias)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Derrotas)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Derrotas)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Empates)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Empates)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Puntos)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Puntos)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Competicion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Competicion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Club)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Club)
+        </dd>        
+    </dl>
+</div>
+<div>
+    <a id="HplVolverAlListado" class="btn btn-outline-secondary cursor-pointer">Volver al listado de temporadas</a>
+</div>
+<script>
+    $("#HplVolverAlListado").click(function ()
+    {
+        $("#DivDetalleTemporada").hide("slow");
+        $("#DivListaTemporadas").show("slow");
+    });
+</script>

@@ -60,5 +60,7 @@ namespace TFG_FUTBOL.Models
         public string Experiencia { get; set; }
 
         public IFormFile ArchivoFoto { get; set; }
+
+        public List<TEMPORADAS_EMPLEADOS> Temporadas { get; set; }
     }
 }

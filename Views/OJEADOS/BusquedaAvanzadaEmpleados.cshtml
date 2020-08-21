@@ -69,7 +69,7 @@
                         <a asp-action="DetallesRegistroEmpleado" asp-route-id="@item.DNI" title="Ver detalles">
                             <i class="fa fa-info" aria-hidden="true"></i>
                         </a> |
-                        <a asp-action="EliminarRegistroEmpleado" asp-route-id="@item.DNI" title="Borrar registro">
+                        <a onclick="return eliminarRegistro('@item.DNI')" asp-action="EliminarRegistroEmpleado" asp-route-id="@item.DNI" title="Borrar registro">
                             <i class="fa fa-trash-o" aria-hidden="true"></i>
                         </a>
                     </td>
@@ -152,5 +152,18 @@
             });
         });
 
+    </script>
+    <script>
+        function eliminarRegistro(dni)
+        {
+            if (confirm('¿Está seguro de eliminar el registro seleccionado?'))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     </script>
 }

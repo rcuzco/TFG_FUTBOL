@@ -202,7 +202,7 @@
                                                         <a class="cursor-pointer" onclick="verDetallesTemporada('@item.DNI','@item.Temporada')" title="Ver detalles">
                                                             <i class="fa fa-info" aria-hidden="true"></i>
                                                         </a> |
-                                                        <a class="cursor-pointer" title="Borrar registro">
+                                                        <a class="cursor-pointer" onclick="return eliminarTemporada('@item.DNI','@item.Temporada')" title="Borrar registro">
                                                             <i class="fa fa-trash-o" aria-hidden="true"></i>
                                                         </a>
                                                     </td>
@@ -314,15 +314,30 @@
         {
             $("#DivEditarTemporada").load("/OJEADOS/EditarTemporadaJugador/" + dni + "/" + encodeURIComponent(temporada));
             $("#DivEditarTemporada").show("slow");
-            $("#DivListaTemporadas").hide("slow");            
+            $("#DivListaTemporadas").hide("slow");
         }
 
         function nuevaTemporada(dni)
         {
-            console.log(dni);
             $("#DivNuevaTemporada").load("/OJEADOS/CrearTemporadaJugador/" + dni);
             $("#DivNuevaTemporada").show("slow");
-            $("#DivListaTemporadas").hide("slow");            
+            $("#DivListaTemporadas").hide("slow");
+        }
+
+        function eliminarTemporada(dni, temporada)
+        {
+            if (confirm('¿Confirma que desea eliminar este registro?'))
+            {
+                $.get("/OJEADOS/EliminarTemporadaJugador/" + dni + "/" + encodeURIComponent(temporada), null, function (data)
+                {                    
+                    window.location.replace("http://localhost:2814/OJEADOS/DetallesRegistro/" + data + "?cargartab");
+                });
+                return false;
+            }
+            else
+            {
+                return false;
+            }
         }
     </script>
     <script>

@@ -29,6 +29,7 @@ namespace TFG_FUTBOL.Controllers
             webHostEnvironment = hostEnvironment;
         }
 
+        #region Métodos para gestionar resto de datos
         // GET: OJEADOS
         public async Task<IActionResult> Index()
         {
@@ -181,7 +182,7 @@ namespace TFG_FUTBOL.Controllers
                                       Valoracion = o.Valoracion,
                                       Foto = o.Foto,
                                       IdClub = o.IdClub,
-                                      Club = o.Club,                                      
+                                      Club = o.Club,
                                       Pasaporte = o.Pasaporte,
                                       PaisNacimiento = o.PaisNacimiento,
                                       Posicion = jo.Posicion,
@@ -290,32 +291,32 @@ namespace TFG_FUTBOL.Controllers
             if (o != null)
             {
 
-                jugadoresOjeadosViewModel.AnhoNacimiento  = o.AnhoNacimiento;
-                jugadoresOjeadosViewModel.DNI             = o.DNI;
-                jugadoresOjeadosViewModel.Correo          = o.Correo;
-                jugadoresOjeadosViewModel.Foto            = o.Foto;
-                jugadoresOjeadosViewModel.Nombres         = o.Nombres;
-                jugadoresOjeadosViewModel.PrimerApellido  = o.PrimerApellido;
+                jugadoresOjeadosViewModel.AnhoNacimiento = o.AnhoNacimiento;
+                jugadoresOjeadosViewModel.DNI = o.DNI;
+                jugadoresOjeadosViewModel.Correo = o.Correo;
+                jugadoresOjeadosViewModel.Foto = o.Foto;
+                jugadoresOjeadosViewModel.Nombres = o.Nombres;
+                jugadoresOjeadosViewModel.PrimerApellido = o.PrimerApellido;
                 jugadoresOjeadosViewModel.SegundoApellido = o.SegundoApellido;
-                jugadoresOjeadosViewModel.Telefono1       = o.Telefono1;
-                jugadoresOjeadosViewModel.Telefono2       = o.Telefono2;
-                jugadoresOjeadosViewModel.Valoracion      = o.Valoracion;
+                jugadoresOjeadosViewModel.Telefono1 = o.Telefono1;
+                jugadoresOjeadosViewModel.Telefono2 = o.Telefono2;
+                jugadoresOjeadosViewModel.Valoracion = o.Valoracion;
 
             }
 
             if (jo != null)
             {
-                jugadoresOjeadosViewModel.Altura              = jo.Altura;
-                jugadoresOjeadosViewModel.Club                = o.Club;
-                jugadoresOjeadosViewModel.EnPrestamo          = jo.EnPrestamo;
+                jugadoresOjeadosViewModel.Altura = jo.Altura;
+                jugadoresOjeadosViewModel.Club = o.Club;
+                jugadoresOjeadosViewModel.EnPrestamo = jo.EnPrestamo;
                 //jugadoresOjeadosViewModel.Goles               = jo.Goles;
-                jugadoresOjeadosViewModel.PaisNacimiento      = o.PaisNacimiento;
+                jugadoresOjeadosViewModel.PaisNacimiento = o.PaisNacimiento;
                 //jugadoresOjeadosViewModel.PartidosJugados     = jo.PartidosJugados;
-                jugadoresOjeadosViewModel.Pasaporte           = o.Pasaporte;
-                jugadoresOjeadosViewModel.Peso                = jo.Peso;
-                jugadoresOjeadosViewModel.PiernaDominante     = jo.PiernaDominante;
-                jugadoresOjeadosViewModel.Posicion            = jo.Posicion;
-                jugadoresOjeadosViewModel.ValorDeMercado      = jo.ValorDeMercado;
+                jugadoresOjeadosViewModel.Pasaporte = o.Pasaporte;
+                jugadoresOjeadosViewModel.Peso = jo.Peso;
+                jugadoresOjeadosViewModel.PiernaDominante = jo.PiernaDominante;
+                jugadoresOjeadosViewModel.Posicion = jo.Posicion;
+                jugadoresOjeadosViewModel.ValorDeMercado = jo.ValorDeMercado;
                 jugadoresOjeadosViewModel.VencimientoContrato = jo.VencimientoContrato;
             }
             return View(jugadoresOjeadosViewModel);
@@ -412,6 +413,7 @@ namespace TFG_FUTBOL.Controllers
             EmpleadosOjeadosViewModel jugadoresOjeadosViewModel = new EmpleadosOjeadosViewModel();
             var o = await _context.OJEADOS.FirstOrDefaultAsync(m => m.DNI == id);
             var jo = await _context.EMPLEADOS_OJEADOS.FirstOrDefaultAsync(d => d.DNI == id);
+            var dt = _context.TEMPORADAS_EMPLEADOS.Where(d => d.DNI == id).ToList();
             if (o != null)
             {
                 jugadoresOjeadosViewModel.DNI = o.DNI;
@@ -433,6 +435,11 @@ namespace TFG_FUTBOL.Controllers
             {
                 jugadoresOjeadosViewModel.Experiencia = jo.Experiencia;
                 jugadoresOjeadosViewModel.Formacion = jo.Formacion;
+            }
+
+            if (dt != null && dt.Any())
+            {
+                jugadoresOjeadosViewModel.Temporadas = dt;
             }
 
             return View(jugadoresOjeadosViewModel);
@@ -495,7 +502,7 @@ namespace TFG_FUTBOL.Controllers
                         o.Telefono1 = oJEADOS.Telefono1;
                         o.Telefono2 = oJEADOS.Telefono2;
                         o.Correo = oJEADOS.Correo;
-                        o.Valoracion = oJEADOS.Valoracion;                        
+                        o.Valoracion = oJEADOS.Valoracion;
                         o.Foto = UploadedFileEmpleado(oJEADOS) ?? o.Foto;
                         o.AnhoNacimiento = oJEADOS.AnhoNacimiento;
                         o.Pasaporte = oJEADOS.Pasaporte;
@@ -561,8 +568,8 @@ namespace TFG_FUTBOL.Controllers
                 {
                     OJEADOS o = new OJEADOS();
                     JUGADORES_OJEADOS jo = new JUGADORES_OJEADOS();
-                    
-                    o.DNI = oJEADOS.DNI;                    
+
+                    o.DNI = oJEADOS.DNI;
                     o.Nombres = oJEADOS.Nombres;
                     o.PrimerApellido = oJEADOS.PrimerApellido;
                     o.SegundoApellido = oJEADOS.SegundoApellido;
@@ -574,7 +581,7 @@ namespace TFG_FUTBOL.Controllers
                     o.Foto = UploadedFile(oJEADOS) ?? o.Foto;
                     o.IdClub = oJEADOS.IdClub;
                     o.Club = oJEADOS.Club;
-                    o.Pasaporte = oJEADOS.Pasaporte; 
+                    o.Pasaporte = oJEADOS.Pasaporte;
                     o.PaisNacimiento = oJEADOS.PaisNacimiento;
 
                     jo.DNI = oJEADOS.DNI;
@@ -663,11 +670,56 @@ namespace TFG_FUTBOL.Controllers
             return PartialView("_CountriesPartial", countries);
         }
 
-        [HttpGet]        
+        [HttpGet]
+        public IActionResult EliminarRegistro(string id)
+        {
+            
+            var temporadas = _context.TEMPORADAS_JUGADORES.Where(d => d.DNI == id);
+            
+            _context.TEMPORADAS_JUGADORES.RemoveRange(temporadas);
+            _context.SaveChanges();
+
+            var datosJugador = _context.JUGADORES_OJEADOS.Find(id);
+            _context.JUGADORES_OJEADOS.Remove(datosJugador);
+            _context.SaveChanges();
+
+            var oJEADOS = _context.OJEADOS.Find(id);
+            _context.OJEADOS.Remove(oJEADOS);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(BusquedaAvanzada));
+        }
+
+
+        [HttpGet]
+        public IActionResult EliminarRegistroEmpleado(string id)
+        {
+
+            var temporadas = _context.TEMPORADAS_EMPLEADOS.Where(d => d.DNI == id);
+
+            _context.TEMPORADAS_EMPLEADOS.RemoveRange(temporadas);
+            _context.SaveChanges();
+
+            var datosJugador = _context.EMPLEADOS_OJEADOS.Find(id);
+            _context.EMPLEADOS_OJEADOS.Remove(datosJugador);
+            _context.SaveChanges();
+
+            var oJEADOS = _context.OJEADOS.Find(id);
+            _context.OJEADOS.Remove(oJEADOS);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(BusquedaAvanzadaEmpleados));
+        }
+        #endregion
+
+        #region Métodos para temporadas jugador
+
+
+        [HttpGet]
         public IActionResult ObtenerTemporadaJugador(string dni, string id)
-        {            
+        {
             TEMPORADAS_JUGADORES temporada = new TEMPORADAS_JUGADORES();
-            temporada = _context.TEMPORADAS_JUGADORES.FirstOrDefault(d=>d.DNI == dni && d.Temporada == id);
+            temporada = _context.TEMPORADAS_JUGADORES.FirstOrDefault(d => d.DNI == dni && d.Temporada == id);
             return PartialView("_DetallesTemporadaJugadorPartial", temporada);
         }
 
@@ -681,14 +733,14 @@ namespace TFG_FUTBOL.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditarTemporadaJugador(string dni, string id, [Bind ("Club,Competicion,PartidosTitular,PartidosSuplente,PartidosConvocado,MinutosJugados,Goles,TarjetasAmarillas,TarjetasRojas")]TEMPORADAS_JUGADORES datosTemporada)
+        public IActionResult EditarTemporadaJugador(string dni, string id, [Bind("Club,Competicion,PartidosTitular,PartidosSuplente,PartidosConvocado,MinutosJugados,Goles,TarjetasAmarillas,TarjetasRojas")] TEMPORADAS_JUGADORES datosTemporada)
         {
-            TEMPORADAS_JUGADORES temporada = new TEMPORADAS_JUGADORES();            
+            TEMPORADAS_JUGADORES temporada = new TEMPORADAS_JUGADORES();
             if (ModelState.IsValid)
             {
                 try
                 {
-                    temporada = _context.TEMPORADAS_JUGADORES.FirstOrDefault(d => d.DNI == dni && d.Temporada == id);                    
+                    temporada = _context.TEMPORADAS_JUGADORES.FirstOrDefault(d => d.DNI == dni && d.Temporada == id);
                     if (temporada != null)
                     {
                         temporada.Club = datosTemporada.Club;
@@ -725,7 +777,7 @@ namespace TFG_FUTBOL.Controllers
         public IActionResult CrearTemporadaJugador(string id, [Bind("Temporada,Club,Competicion,PartidosTitular,PartidosSuplente,PartidosConvocado,MinutosJugados,Goles,TarjetasAmarillas,TarjetasRojas")] TEMPORADAS_JUGADORES datosTemporada)
         {
             datosTemporada.DNI = id;
-            
+
             if (ModelState.IsValid)
             {
                 try
@@ -740,5 +792,104 @@ namespace TFG_FUTBOL.Controllers
             }
             return Ok(datosTemporada);
         }
+
+        [HttpGet]
+        public IActionResult EliminarTemporadaJugador(string dni, string id)
+        {
+            TEMPORADAS_JUGADORES temporada = new TEMPORADAS_JUGADORES();
+            temporada = _context.TEMPORADAS_JUGADORES.FirstOrDefault(d => d.DNI == dni && d.Temporada == id);
+            _context.TEMPORADAS_JUGADORES.Remove(temporada);
+            _context.SaveChanges();
+            return Ok(dni);
+        }
+        #endregion
+
+        #region Métodos para temporadas empleado
+        [HttpGet]
+        public IActionResult ObtenerTemporadaEmpleado(string dni, string id)
+        {
+            TEMPORADAS_EMPLEADOS temporada = new TEMPORADAS_EMPLEADOS();
+            temporada = _context.TEMPORADAS_EMPLEADOS.FirstOrDefault(d => d.DNI == dni && d.Temporada == id);
+            return PartialView("_DetallesTemporadaEmpleadoPartial", temporada);
+        }
+
+        [HttpGet]
+        public IActionResult EditarTemporadaEmpleado(string dni, string id)
+        {
+            TEMPORADAS_EMPLEADOS temporada = new TEMPORADAS_EMPLEADOS();
+            temporada = _context.TEMPORADAS_EMPLEADOS.FirstOrDefault(d => d.DNI == dni && d.Temporada == id);
+            return PartialView("_EditarTemporadaEmpleadoPartial", temporada);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditarTemporadaEmpleado(string dni, string id, [Bind("PartidosJugados,Victorias,Derrotas,Empates,Puntos,Competicion,Club")] TEMPORADAS_EMPLEADOS datosTemporada)
+        {
+            TEMPORADAS_EMPLEADOS temporada = new TEMPORADAS_EMPLEADOS();
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    temporada = _context.TEMPORADAS_EMPLEADOS.FirstOrDefault(d => d.DNI == dni && d.Temporada == id);
+                    if (temporada != null)
+                    {
+                        temporada.PartidosJugados = datosTemporada.PartidosJugados;
+                        temporada.Victorias = datosTemporada.Victorias;
+                        temporada.Derrotas = datosTemporada.Derrotas;
+                        temporada.Empates = datosTemporada.Empates;
+                        temporada.Puntos = datosTemporada.Puntos;
+                        temporada.Competicion = datosTemporada.Competicion;
+                        temporada.Club = datosTemporada.Club;
+                    }
+                    _context.Update(temporada);
+                    _context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
+            return Ok(temporada);
+        }
+
+        [HttpGet]
+        public IActionResult CrearTemporadaEmpleado(string id)
+        {
+            TEMPORADAS_EMPLEADOS temporada = new TEMPORADAS_EMPLEADOS();
+            temporada.DNI = id;
+            return PartialView("_CrearTemporadaEmpleadoPartial", temporada);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CrearTemporadaEmpleado(string id, [Bind("Temporada,PartidosJugados,Victorias,Derrotas,Empates,Puntos,Competicion,Club")] TEMPORADAS_EMPLEADOS datosTemporada)
+        {
+            datosTemporada.DNI = id;
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.TEMPORADAS_EMPLEADOS.Add(datosTemporada);
+                    _context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
+            return Ok(datosTemporada);
+        }
+
+        [HttpGet]
+        public IActionResult EliminarTemporadaEmpleado(string dni, string id)
+        {
+            TEMPORADAS_EMPLEADOS temporada = new TEMPORADAS_EMPLEADOS();
+            temporada = _context.TEMPORADAS_EMPLEADOS.FirstOrDefault(d => d.DNI == dni && d.Temporada == id);
+            _context.TEMPORADAS_EMPLEADOS.Remove(temporada);
+            _context.SaveChanges();
+            return Ok(dni);
+        }
+        #endregion
     }
 }

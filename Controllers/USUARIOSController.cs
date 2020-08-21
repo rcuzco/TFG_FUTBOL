@@ -107,7 +107,8 @@ namespace TFG_FUTBOL.Controllers
             {
                 try
                 {
-                    _context.Update(uSUARIOS);
+                    var usuario = _context.USUARIOS.Find(id);
+                    _context.USUARIOS.Update(usuario);                    
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -121,7 +122,7 @@ namespace TFG_FUTBOL.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Details), new { id = id });
             }
             return View(uSUARIOS);
         }
