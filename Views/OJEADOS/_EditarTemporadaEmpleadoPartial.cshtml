@@ -4,7 +4,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="_EditarTemporadaEmpleadoPartial">
+        <form id="FrmEditarTemporada" asp-action="EditarTemporadaEmpleado">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="DNI" />
             <input type="hidden" asp-for="Temporada" />
@@ -63,11 +63,14 @@
 
     $("#FrmEditarTemporada").submit(function (e)
     {
+        //alert("prueba");
+        //console.log("prueba");
         e.preventDefault();
         var datos = $(this).serializeArray();
         $.post("/OJEADOS/EditarTemporadaEmpleado/@Model.DNI/" + encodeURIComponent('@Model.Temporada'), datos)
             .done(function (data)
             {
+                console.log("data",data);
                 if (data)
                 {
                     //actualización correcta
